@@ -6,7 +6,7 @@ import 'package:international_clock/pages/loading.dart';
 void main() {
   runApp(
     MaterialApp(
-        initialRoute: '/home',
+        initialRoute: '/',
         // Map key value pairs
         routes: {
           '/': (context) => const Loading(),

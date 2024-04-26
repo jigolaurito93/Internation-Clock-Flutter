@@ -5,8 +5,13 @@ import 'package:international_clock/pages/loading.dart';
 
 void main() {
   runApp(
-    const MaterialApp(
-      home: Home(),
-    ),
+    MaterialApp(
+        initialRoute: '/home',
+        // Map key value pairs
+        routes: {
+          '/': (context) => const Loading(),
+          '/home': (context) => const Home(),
+          '/location': (context) => const ChooseLocation(),
+        }),
   );
 }

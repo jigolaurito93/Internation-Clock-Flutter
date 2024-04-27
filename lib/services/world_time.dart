@@ -11,24 +11,29 @@ class WorldTime {
   WorldTime({this.location, this.time, this.flag, this.url});
 
   Future<void> getTime() async {
-    Uri urls = Uri.parse('https://worldtimeapi.org/api/timezone/$url');
-    Response response = await get(urls);
-    // install dart:convert pakage to use jsonDecode
-    Map data = jsonDecode(response.body);
+    try {
+      Uri urls = Uri.parse('https://worldtimeapi.org/api/timezone/$url');
+      Response response = await get(urls);
+      // install dart:convert pakage to use jsonDecode
+      Map data = jsonDecode(response.body);
 
-    // get properties from data
-    String datetime = data['datetime'];
-    String offset = data['utc_offset'].substring(1, 3);
-    String datetimeutc = data['utc_datetime'];
-    // print(data);
+      // get properties from data
+      String datetime = data['datetime'];
+      String offset = data['utc_offset'].substring(1, 3);
+      String datetimeutc = data['utc_datetime'];
+      // print(data);
 
-    // print(offset);
+      // print(offset);
 
-    // Create a DateTime object
-    DateTime now = DateTime.parse(datetime);
-    now = now.add(Duration(hours: int.parse(offset)));
+      // Create a DateTime object
+      DateTime now = DateTime.parse(datetime);
+      now = now.add(Duration(hours: int.parse(offset)));
 
-    // Set the time property
-    time = now.toString();
+      // Set the time property
+      time = now.toString();
+    } catch (e) {
+      print(e);
+      time = 'Could not get time data';
+    }
   }
 }

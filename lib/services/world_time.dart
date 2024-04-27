@@ -1,6 +1,8 @@
 import 'package:http/http.dart';
 // install this package to use jsonDecode
 import 'dart:convert';
+// library that formats time to a readable format
+import 'package:intl/intl.dart';
 
 class WorldTime {
   String? location; // location name for the UI
@@ -30,7 +32,8 @@ class WorldTime {
       now = now.add(Duration(hours: int.parse(offset)));
 
       // Set the time property
-      time = now.toString();
+      // time = now.toString();
+      time = DateFormat.jm().format(now);
     } catch (e) {
       print(e);
       time = 'Could not get time data';
